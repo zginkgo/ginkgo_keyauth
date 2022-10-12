@@ -69,6 +69,8 @@ gen: #d generate code
 	@protoc-go-inject-tag -input="apps/book/*.pb.go"
 	@protoc-go-inject-tag -input="apps/user/*.pb.go"
 	@protoc-go-inject-tag -input="apps/token/*.pb.go"
+	@protoc-go-inject-tag -input="apps/endpoint/*.pb.go"
+	@protoc-go-inject-tag -input="apps/policy/*.pb.go"
 
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

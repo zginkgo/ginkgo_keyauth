@@ -1,20 +1,26 @@
 package auth
 
 import (
-	"github.com/zginkgo/ginkgo_keyauth/apps/token"
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
+	"github.com/zginkgo/ginkgo_keyauth/apps/policy"
+	"github.com/zginkgo/ginkgo_keyauth/apps/token"
+	"github.com/zginkgo/ginkgo_keyauth/client/rpc"
 )
 
-func NewKeyauthAuther(auth token.ServiceClient) *KeyauthAuther {
+func NewKeyauthAuther(client *rpc.ClientSet, serviceName string) *KeyauthAuther {
 	return &KeyauthAuther{
-		auth: auth,
-		log:  zap.L().Named("http.auther"),
+		auth:        client.Token(),
+		perm:        client.Policy(),
+		log:         zap.L().Named("http.auther"),
+		serviceName: serviceName,
 	}
 }
 
 // KeyauthAuther 用keyauth提供的中间件
 type KeyauthAuther struct {
-	log  logger.Logger
-	auth token.ServiceClient
+	log         logger.Logger
+	auth        token.ServiceClient
+	perm        policy.RPCClient
+	serviceName string
 }

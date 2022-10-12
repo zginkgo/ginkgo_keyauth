@@ -1,10 +1,11 @@
 package auth
 
 import (
-	"fmt"
 	"github.com/emicklei/go-restful/v3"
+	"github.com/infraboard/mcube/exception"
 	"github.com/infraboard/mcube/http/label"
 	"github.com/infraboard/mcube/http/response"
+	"github.com/zginkgo/ginkgo_keyauth/apps/policy"
 	"github.com/zginkgo/ginkgo_keyauth/apps/token"
 	"github.com/zginkgo/ginkgo_keyauth/common/utils"
 )
@@ -19,7 +20,6 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 	// 1. 能不能获取路由装饰信息
 	meta := req.SelectedRoute().Metadata()
 	a.log.Debug(meta)
-	fmt.Println()
 
 	// 获取meta信息, get , 判断是否开启认证
 	var isAuthEnable bool
@@ -43,7 +43,7 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 		validateReq := token.NewValidateTokenRequest(tkStr)
 		tk, err := a.auth.ValidateToken(req.Request.Context(), validateReq)
 		if err != nil {
-			response.Failed(resp.ResponseWriter, err)
+			response.Failed(resp.ResponseWriter, exception.NewUnauthorized(err.Error()))
 			return
 		}
 
@@ -60,6 +60,37 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 		// Set Context
 		req.SetAttribute("token", tk)
 		// req.Attribute("token").(*token.Token)
+	}
+
+	// 获取meta信息, get, 判断是否开启鉴权
+	var isPermEnable bool
+	if authV, ok := meta[label.Permission]; ok {
+		switch v := authV.(type) {
+		case bool:
+			isPermEnable = v
+		case string:
+			isPermEnable = v == "true"
+		}
+	}
+
+	// 认证后,才能鉴权
+	if isAuthEnable && isPermEnable {
+		permReq := policy.NewValidatePermissionRequest()
+		permReq.Service = a.serviceName
+		if meta != nil {
+			if v, ok := meta[label.Resource]; ok {
+				permReq.Resource, _ = v.(string)
+			}
+			if v, ok := meta[label.Action]; ok {
+				permReq.Action, _ = v.(string)
+			}
+		}
+
+		_, err := a.perm.ValidatePermission(req.Request.Context(), permReq)
+		if err != nil {
+			response.Failed(resp.ResponseWriter, exception.NewPermissionDeny(err.Error()))
+			return
+		}
 	}
 
 	// chain 用于将请求flow下去

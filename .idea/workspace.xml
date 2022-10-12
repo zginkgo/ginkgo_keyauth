@@ -4,11 +4,29 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cac283f7-8820-4774-a075-2ef5bcbff455" name="变更" comment="" />
+    <list default="true" id="cac283f7-8820-4774-a075-2ef5bcbff455" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/all/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/all/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/all/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/all/impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/grpc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rpc/auth/auther.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/auth/auther.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rpc/auth/restful.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/auth/restful.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rpc/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rpc/client_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/client_test.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
@@ -21,13 +39,16 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2FzyUdORKjx2xlRWsXbbYeIGnrX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -43,7 +64,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "MTConfigurable"
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Protocol Buffer"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -53,5 +74,17 @@
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/apps/role/role_grpc.pb.go</url>
+          <line>28</line>
+          <option name="temporary" value="true" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

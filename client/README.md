@@ -36,3 +36,14 @@ func TestBookQuery(t *testing.T) {
 git tag v0.0.1
 
 # 其他服务使用时, go mod里面指定版本即可
+
+使用 go restful 客户端编写SDK
+```go
+i.client.Post("/sdsfd").
+	Header("token", "xxx").
+	Param("page_size", 1).
+	Timeout(3 * time.Second).
+	Body(nil).
+	Do(context.TODO()).
+	Into(resp).Error()
+```

@@ -10,14 +10,14 @@ var (
 	grpcApps = map[string]GRPCApp{}
 )
 
-// GRPCService GRPC服务的实例
+// GRPCApp GRPCService GRPC服务的实例
 type GRPCApp interface {
 	Registry(*grpc.Server)
 	Config() error
 	Name() string
 }
 
-// RegistryService 服务实例注册
+// RegistryGrpcApp RegistryService 服务实例注册
 func RegistryGrpcApp(app GRPCApp) {
 	// 已经注册的服务禁止再次注册
 	_, ok := grpcApps[app.Name()]
