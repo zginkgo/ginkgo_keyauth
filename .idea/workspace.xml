@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cac283f7-8820-4774-a075-2ef5bcbff455" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/book/book.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/book/book.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/app.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/endpoint.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/enum.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/impl/dao.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/impl/endpoint.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/impl/impl.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/pb/endpoint.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/pb/enum.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/pb/request.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/pb/resource.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/pb/service.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/request.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/resource.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/service.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/endpoint/service_grpc.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/policy/policy.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/policy/policy.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/role/role.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/role/role.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/token/token.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/token/token.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/user.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/user.pb.go" afterDir="false" />
-    </list>
+    <list default="true" id="cac283f7-8820-4774-a075-2ef5bcbff455" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
