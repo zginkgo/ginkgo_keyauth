@@ -32,7 +32,6 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 		}
 	}
 
-	var username string
 	if isAuthEnable {
 		// 处理Request对象
 		// *restful.Request
@@ -77,7 +76,6 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 	if isAuthEnable && isPermEnable {
 		permReq := policy.NewValidatePermissionRequest()
 
-		// 获取token用户名
 		token2 := req.Attribute("token")
 		tokenset, _ := token2.(*token.Token)
 		permReq.Username = tokenset.Data.UserName
