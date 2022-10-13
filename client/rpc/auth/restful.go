@@ -32,6 +32,7 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 		}
 	}
 
+	var username string
 	if isAuthEnable {
 		// 处理Request对象
 		// *restful.Request
@@ -59,7 +60,6 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 
 		// Set Context
 		req.SetAttribute("token", tk)
-		// req.Attribute("token").(*token.Token)
 	}
 
 	// 获取meta信息, get, 判断是否开启鉴权
@@ -76,6 +76,10 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 	// 认证后,才能鉴权
 	if isAuthEnable && isPermEnable {
 		permReq := policy.NewValidatePermissionRequest()
+		token2 := req.Attribute("token")
+		tokenset, _ := token2.(*token.Token)
+		permReq.Username = tokenset.Data.UserName
+
 		permReq.Service = a.serviceName
 		if meta != nil {
 			if v, ok := meta[label.Resource]; ok {

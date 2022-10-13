@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cac283f7-8820-4774-a075-2ef5bcbff455" name="变更" comment="" />
+    <list default="true" id="cac283f7-8820-4774-a075-2ef5bcbff455" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/all/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/all/impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/policy/impl/policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/policy/impl/policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/rpc/auth/restful.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/auth/restful.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -2,6 +2,7 @@ package impl
 
 import (
 	"context"
+	"fmt"
 	"github.com/infraboard/mcube/exception"
 	"github.com/zginkgo/ginkgo_keyauth/apps/policy"
 	"github.com/zginkgo/ginkgo_keyauth/apps/role"
@@ -13,6 +14,7 @@ func (s *service) ValidatePermission(ctx context.Context, req *policy.ValidatePe
 	// 由于使用分页, 只查询100条数据
 	query := policy.NewQueryPolicyRequest()
 	query.Namespace = req.Namespace
+	fmt.Println(req.Username, "----->")
 	query.Username = req.Username
 	query.Page.PageSize = 100
 
@@ -21,7 +23,7 @@ func (s *service) ValidatePermission(ctx context.Context, req *policy.ValidatePe
 	if err != nil {
 		return nil, err
 	}
-	s.log.Debugf("=======> 获取用户名,角色,命名空间: \n %s", s)
+	s.log.Debugf("=======> 获取用户名,角色,命名空间: \n %s", set)
 
 	// 获取用户的角色, 从策略中抽取出来
 	roleNames := set.Roles()
