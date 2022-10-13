@@ -28,19 +28,19 @@ type ValidatePermissionRequest struct {
 
 	// 用户名
 	// @gotags: json:"username" bson:"username"
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username" bson:"username"`
 	// 空间
 	// @gotags: json:"namespace" bson:"namespace"
-	Namespace string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	Namespace string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace" bson:"namespace"`
 	// 服务
 	// @gotags: json:"service" bson:"service"
-	Service string `protobuf:"bytes,2,opt,name=service,proto3" json:"service,omitempty"`
+	Service string `protobuf:"bytes,2,opt,name=service,proto3" json:"service" bson:"service"`
 	// 资源
 	// @gotags: json:"resource" bson:"resource"
-	Resource string `protobuf:"bytes,3,opt,name=resource,proto3" json:"resource,omitempty"`
+	Resource string `protobuf:"bytes,3,opt,name=resource,proto3" json:"resource" bson:"resource"`
 	// 操作
 	// @gotags: json:"action" bson:"action"
-	Action string `protobuf:"bytes,4,opt,name=action,proto3" json:"action,omitempty"`
+	Action string `protobuf:"bytes,4,opt,name=action,proto3" json:"action" bson:"action"`
 }
 
 func (x *ValidatePermissionRequest) Reset() {
@@ -118,13 +118,13 @@ type Policy struct {
 
 	// 角色id
 	// @gotags: json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
 	// 角色创建时间
 	// @gotags: json:"create_at" bson:"create_at"
-	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty"`
+	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at" bson:"create_at"`
 	// 策略定义
 	// @gotags: json:"spec" bson:"spec"
-	Spec *CreatePolicyRequest `protobuf:"bytes,3,opt,name=spec,proto3" json:"spec,omitempty"`
+	Spec *CreatePolicyRequest `protobuf:"bytes,3,opt,name=spec,proto3" json:"spec" bson:"spec"`
 }
 
 func (x *Policy) Reset() {
@@ -187,16 +187,16 @@ type QueryPolicyRequest struct {
 
 	// 分页参数
 	// @gotags: json:"page"
-	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
+	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page"`
 	// 用户名
 	// @gotags: json:"username"
-	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username"`
 	// 空间
 	// @gotags: json:"namespace"
-	Namespace string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	Namespace string `protobuf:"bytes,5,opt,name=namespace,proto3" json:"namespace"`
 	// 角色名称
 	// @gotags: json:"role"
-	Role string `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	Role string `protobuf:"bytes,3,opt,name=role,proto3" json:"role"`
 }
 
 func (x *QueryPolicyRequest) Reset() {
@@ -329,10 +329,10 @@ type PolicySet struct {
 
 	// 总量
 	// @gotags: json:"id" bson:"_id"
-	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"id" bson:"_id"`
 	// 列表
 	// @gotags: json:"items" bson:"items"
-	Items []*Policy `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+	Items []*Policy `protobuf:"bytes,2,rep,name=items,proto3" json:"items" bson:"items"`
 }
 
 func (x *PolicySet) Reset() {
@@ -389,13 +389,13 @@ type CreatePolicyRequest struct {
 
 	// 用户名
 	// @gotags: json:"username" bson:"username" validate:"required"
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username" bson:"username" validate:"required"`
 	// 角色名称
 	// @gotags: json:"role" bson:"role" validate:"required"
-	Role string `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	Role string `protobuf:"bytes,2,opt,name=role,proto3" json:"role" bson:"role" validate:"required"`
 	// 空间
 	// @gotags: json:"namespace" bson:"namespace"
-	Namespace string `protobuf:"bytes,3,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	Namespace string `protobuf:"bytes,3,opt,name=namespace,proto3" json:"namespace" bson:"namespace"`
 }
 
 func (x *CreatePolicyRequest) Reset() {

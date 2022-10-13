@@ -66,7 +66,7 @@ pb: ## Copy ginkgo_mcube protobuf files to common/pb
 
 gen: #d generate code
 	@protoc -I=. -I=/usr/local/include --go_out=. --go_opt=module=${PKG} --go-grpc_out=. --go-grpc_opt=module=${PKG} apps/*/pb/*.proto
-	@protoc-go-inject-tag -input="apps/endpoint/*.pb.go"
+	@protoc-go-inject-tag -input="apps/*/*.pb.go"
 #	@protoc-go-inject-tag -input="apps/token/*.pb.go"
 #	@protoc-go-inject-tag -input="apps/endpoint/*.pb.go"
 #	@protoc-go-inject-tag -input="apps/policy/*.pb.go"

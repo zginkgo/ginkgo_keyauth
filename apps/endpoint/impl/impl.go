@@ -1,13 +1,13 @@
 package impl
 
 import (
-	"github.com/zginkgo/ginkgo_keyauth/apps"
 	"go.mongodb.org/mongo-driver/mongo"
 
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
 	"google.golang.org/grpc"
 
+	"github.com/zginkgo/ginkgo_keyauth/apps"
 	"github.com/zginkgo/ginkgo_keyauth/apps/endpoint"
 	"github.com/zginkgo/ginkgo_keyauth/conf"
 )

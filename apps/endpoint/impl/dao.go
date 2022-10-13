@@ -6,7 +6,6 @@ import (
 	"github.com/zginkgo/ginkgo_keyauth/apps/endpoint"
 )
 
-// Save Object
 func (s *service) save(ctx context.Context, set *endpoint.EndpiontSet) error {
 	// s.col.InsertMany()
 	if _, err := s.col.InsertMany(ctx, set.ToDocs()); err != nil {

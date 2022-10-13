@@ -133,31 +133,31 @@ type Token struct {
 
 	// 唯一ID
 	// @gotags: json:"access_token" bson:"_id"
-	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token" bson:"_id"`
 	// 颁发时间
 	// @gotags: json:"issue_at" bson:"issue_at"
-	IssueAt int64 `protobuf:"varint,2,opt,name=issue_at,json=issueAt,proto3" json:"issue_at,omitempty"`
+	IssueAt int64 `protobuf:"varint,2,opt,name=issue_at,json=issueAt,proto3" json:"issue_at" bson:"issue_at"`
 	// 更新时间
 	// @gotags: json:"update_at" bson:"update_at"
-	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
+	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at" bson:"update_at"`
 	// 更新人
 	// @gotags: json:"update_by" bson:"update_by"
-	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by,omitempty"`
+	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by" bson:"update_by"`
 	// 颁发请求
 	// @gotags: json:"data" bson:"data"
-	Data *IssueTokenRequest `protobuf:"bytes,5,opt,name=data,proto3" json:"data,omitempty"`
+	Data *IssueTokenRequest `protobuf:"bytes,5,opt,name=data,proto3" json:"data" bson:"data"`
 	// Access Token过期时间(绝对时间), 10分钟,  now() + 10分钟
 	// @gotags: json:"access_token_expired_at" bson:"access_token_expired_at"
-	AccessTokenExpiredAt int64 `protobuf:"varint,6,opt,name=access_token_expired_at,json=accessTokenExpiredAt,proto3" json:"access_token_expired_at,omitempty"`
+	AccessTokenExpiredAt int64 `protobuf:"varint,6,opt,name=access_token_expired_at,json=accessTokenExpiredAt,proto3" json:"access_token_expired_at" bson:"access_token_expired_at"`
 	// token过期了, 允许刷新
 	// @gotags: json:"refresh_token" bson:"refresh_token"
-	RefreshToken string `protobuf:"bytes,7,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	RefreshToken string `protobuf:"bytes,7,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token" bson:"refresh_token"`
 	// Access Token过期时间(绝对时间), 10分钟,  now() + 10分钟
 	// @gotags: json:"refresh_token_expired_at" bson:"refresh_token_expired_at"
-	RefreshTokenExpiredAt int64 `protobuf:"varint,8,opt,name=refresh_token_expired_at,json=refreshTokenExpiredAt,proto3" json:"refresh_token_expired_at,omitempty"`
+	RefreshTokenExpiredAt int64 `protobuf:"varint,8,opt,name=refresh_token_expired_at,json=refreshTokenExpiredAt,proto3" json:"refresh_token_expired_at" bson:"refresh_token_expired_at"`
 	// 用于传递额外信息
 	// @gotags: json:"meta" bson:"meta"
-	Meta map[string]string `protobuf:"bytes,10,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Meta map[string]string `protobuf:"bytes,10,rep,name=meta,proto3" json:"meta" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"meta"`
 }
 
 func (x *Token) Reset() {
@@ -262,16 +262,16 @@ type IssueTokenRequest struct {
 
 	// 授权类型
 	// @gotags: json:"grante_type" bson:"grante_type"
-	GranteType GranteType `protobuf:"varint,1,opt,name=grante_type,json=granteType,proto3,enum=ginkgo_keyauth.token.GranteType" json:"grante_type,omitempty"`
+	GranteType GranteType `protobuf:"varint,1,opt,name=grante_type,json=granteType,proto3,enum=ginkgo_keyauth.token.GranteType" json:"grante_type" bson:"grante_type"`
 	// 授权类型
 	// @gotags: json:"domain" bson:"domain"
-	UserDomain string `protobuf:"bytes,2,opt,name=user_domain,json=userDomain,proto3" json:"user_domain,omitempty"`
+	UserDomain string `protobuf:"bytes,2,opt,name=user_domain,json=userDomain,proto3" json:"domain" bson:"domain"`
 	// 授权类型
 	// @gotags: json:"user_name" bson:"user_name"
-	UserName string `protobuf:"bytes,3,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
+	UserName string `protobuf:"bytes,3,opt,name=user_name,json=userName,proto3" json:"user_name" bson:"user_name"`
 	// 授权类型
 	// @gotags: json:"password" bson:"-"
-	Password string `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
+	Password string `protobuf:"bytes,4,opt,name=password,proto3" json:"password" bson:"-"`
 }
 
 func (x *IssueTokenRequest) Reset() {
@@ -404,10 +404,10 @@ type QueryTokenRequest struct {
 
 	// 分页参数
 	// @gotags: json:"page"
-	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
+	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page"`
 	// 关键字参数
 	// @gotags: json:"keywords"
-	Keywords string `protobuf:"bytes,2,opt,name=keywords,proto3" json:"keywords,omitempty"`
+	Keywords string `protobuf:"bytes,2,opt,name=keywords,proto3" json:"keywords"`
 }
 
 func (x *QueryTokenRequest) Reset() {
@@ -464,10 +464,10 @@ type TokenSet struct {
 
 	// 分页时，返回总数量
 	// @gotags: json:"total"
-	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total"`
 	// 一页的数据
 	// @gotags: json:"items"
-	Items []*Token `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+	Items []*Token `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 }
 
 func (x *TokenSet) Reset() {
@@ -523,7 +523,7 @@ type DeleteTokenRequest struct {
 
 	// book id
 	// @gotags: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 }
 
 func (x *DeleteTokenRequest) Reset() {
@@ -572,7 +572,7 @@ type DescribeTokenRequest struct {
 
 	// access token
 	// @gotags: json:"access_token"
-	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token"`
 }
 
 func (x *DescribeTokenRequest) Reset() {
@@ -621,7 +621,7 @@ type ValidateTokenRequest struct {
 
 	// access token
 	// @gotags: json:"access_token"
-	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token"`
 }
 
 func (x *ValidateTokenRequest) Reset() {
@@ -670,10 +670,10 @@ type RevolkTokenRequest struct {
 
 	// access token
 	// @gotags: json:"access_token"
-	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessToken string `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token"`
 	// refresh token, 当做撤销凭证
 	// @gotags: json:"refresh_token"
-	RefreshToken string `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	RefreshToken string `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token"`
 }
 
 func (x *RevolkTokenRequest) Reset() {

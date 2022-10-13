@@ -1,35 +1,44 @@
 syntax = "proto3";
 
-package zginkgo.ginkgo_keyauth.endpoint;
+package ginkgo_keyauth.endpoint;
 option go_package = "github.com/zginkgo/ginkgo_keyauth/apps/endpoint";
 
-import "github.com/zginkgo/ginkgo_mcube/pb/http/entry.proto";
-
-// Endpoint Service's features
-message Endpoint {
-  // 端点名称
-  // @gotags: bson:"_id" json:"id" validate:"required,lte=64"
-  string id = 1;
-  // 创建时间
-  // @gotags: bson:"create_at" json:"create_at,omitempty"
-  int64 create_at = 2;
-  // 更新时间
-  // @gotags: bson:"update_at" json:"update_at,omitempty"
-  int64 update_at = 3;
-  // 该功能属于那个服务
-  // @gotags: bson:"service_id" json:"service_id,omitempty" validate:"required,lte=64"
-  string service_id = 4;
-  // 服务那个版本的功能
-  // @gotags: bson:"version" json:"version,omitempty" validate:"required,lte=64"
-  string version = 5;
-  // 路由条目信息
-  // @gotags: bson:"entry" json:"entry" validate:"required"
-  ginkgo_mcube.http.Entry entry = 6;
+service RPC {
+  // 服务功能注册
+  rpc RegistryEndpoint(EndpiontSet) returns(RegistryResponse);
 }
 
-message Set {
-  // @gotags: bson:"total" json:"total"
-  int64 total = 1;
-  // @gotags: bson:"items" json:"items"
-  repeated Endpoint items = 2;
+// 服务功能列表
+message EndpiontSet {
+  // 服务名称
+  // @gotags: json:"service" bson:"service"
+  string service = 1;
+  // 服务功能
+  // @gotags: json:"endpoints" bson:"endpoints"
+  repeated Endpiont endpoints = 2;
+}
+
+message RegistryResponse {
+  // 注册返回
+  // @gotags: json:"message" bson:"message"
+  string message = 1;
+}
+
+// 服务功能
+message Endpiont {
+  // 资源名称, 路由装饰定义
+  // @gotags: json:"resource" bson:"resource"
+  string resource = 2;
+  // 资源操作方法
+  // @gotags: json:"action" bson:"action"
+  string action = 3;
+  // 该接口的标签, 该功能的标签
+  // @gotags: json:"labels" bson:"labels"
+  map<string,string> labels = 4;
+  // HTTP 路由定义
+  // @gotags: json:"path" bson:"path"
+  string path = 5;
+  // HTTP 路由定义
+  // @gotags: json:"method" bson:"method"
+  string method = 6;
 }

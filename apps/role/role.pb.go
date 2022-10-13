@@ -27,10 +27,10 @@ type QueryRoleRequest struct {
 
 	// 分页参数
 	// @gotags: json:"page"
-	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
+	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page"`
 	// 根据role名称批量获取role对象
 	// @gotags: json:"role_names"
-	RoleNames []string `protobuf:"bytes,2,rep,name=role_names,json=roleNames,proto3" json:"role_names,omitempty"`
+	RoleNames []string `protobuf:"bytes,2,rep,name=role_names,json=roleNames,proto3" json:"role_names"`
 }
 
 func (x *QueryRoleRequest) Reset() {
@@ -149,10 +149,10 @@ type RoleSet struct {
 
 	// 角色id
 	// @gotags: json:"total" bson:"total"
-	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total" bson:"total"`
 	// 角色id
 	// @gotags: json:"items" bson:"items"
-	Items []*Role `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+	Items []*Role `protobuf:"bytes,2,rep,name=items,proto3" json:"items" bson:"items"`
 }
 
 func (x *RoleSet) Reset() {
@@ -208,13 +208,13 @@ type Role struct {
 
 	// 角色id
 	// @gotags: json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
 	// 角色创建时间
 	// @gotags: json:"name" bson:"create_at"
-	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty"`
+	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"name" bson:"create_at"`
 	// 角色名称
 	// @gotags: json:"spec" bson:"spec"
-	Spec *CreateRoleRequest `protobuf:"bytes,3,opt,name=spec,proto3" json:"spec,omitempty"`
+	Spec *CreateRoleRequest `protobuf:"bytes,3,opt,name=spec,proto3" json:"spec" bson:"spec"`
 }
 
 func (x *Role) Reset() {
@@ -277,16 +277,16 @@ type CreateRoleRequest struct {
 
 	// 角色名称
 	// @gotags: json:"name" bson:"name"
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" bson:"name"`
 	// 角色标识
 	// @gotags: json:"description" bson:"description"
-	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description" bson:"description"`
 	// 角色的权限
 	// @gotags: json:"permissions" bson:"permissions"
-	Permissions []*Permission `protobuf:"bytes,3,rep,name=permissions,proto3" json:"permissions,omitempty"`
+	Permissions []*Permission `protobuf:"bytes,3,rep,name=permissions,proto3" json:"permissions" bson:"permissions"`
 	// 角色的一些额外属性
 	// @gotags: json:"meta" bson:"meta"
-	Meta map[string]string `protobuf:"bytes,5,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Meta map[string]string `protobuf:"bytes,5,rep,name=meta,proto3" json:"meta" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"meta"`
 }
 
 func (x *CreateRoleRequest) Reset() {
@@ -357,13 +357,13 @@ type Permission struct {
 
 	// 服务名称
 	// @gotags: json:"service" bson:"service"
-	Service string `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
+	Service string `protobuf:"bytes,1,opt,name=service,proto3" json:"service" bson:"service"`
 	// 是否允许访问所有功能
 	// @gotags: json:"allow_all" bson:"allow_all
-	AllowAll bool `protobuf:"varint,2,opt,name=allow_all,json=allowAll,proto3" json:"allow_all,omitempty"`
+	AllowAll bool `protobuf:"varint,2,opt,name=allow_all,json=allowAll,proto3" json:"allow_all"`
 	// 服务功能
 	// @gotags: json:"featrues" bson:"featrues"
-	Featrues []*Featrue `protobuf:"bytes,3,rep,name=featrues,proto3" json:"featrues,omitempty"`
+	Featrues []*Featrue `protobuf:"bytes,3,rep,name=featrues,proto3" json:"featrues" bson:"featrues"`
 }
 
 func (x *Permission) Reset() {
@@ -426,10 +426,10 @@ type Featrue struct {
 
 	// 资源名称
 	// @gotags: json:"resource" bson:"resource"
-	Resource string `protobuf:"bytes,3,opt,name=resource,proto3" json:"resource,omitempty"`
+	Resource string `protobuf:"bytes,3,opt,name=resource,proto3" json:"resource" bson:"resource"`
 	// 资源操作
 	// @gotags: json:"action" bson:"action"
-	Action string `protobuf:"bytes,4,opt,name=action,proto3" json:"action,omitempty"`
+	Action string `protobuf:"bytes,4,opt,name=action,proto3" json:"action" bson:"action"`
 }
 
 func (x *Featrue) Reset() {
@@ -485,13 +485,13 @@ type PermissionRequest struct {
 
 	// 服务名称
 	// @gotags: json:"service"
-	Service string `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
+	Service string `protobuf:"bytes,1,opt,name=service,proto3" json:"service"`
 	// 资源名称
 	// @gotags: json:"resource"
-	Resource string `protobuf:"bytes,2,opt,name=resource,proto3" json:"resource,omitempty"`
+	Resource string `protobuf:"bytes,2,opt,name=resource,proto3" json:"resource"`
 	// 资源操作
 	// @gotags: json:"action"
-	Action string `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+	Action string `protobuf:"bytes,3,opt,name=action,proto3" json:"action"`
 }
 
 func (x *PermissionRequest) Reset() {
