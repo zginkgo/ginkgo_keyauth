@@ -76,6 +76,8 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 	// 认证后,才能鉴权
 	if isAuthEnable && isPermEnable {
 		permReq := policy.NewValidatePermissionRequest()
+
+		// 获取token用户名
 		token2 := req.Attribute("token")
 		tokenset, _ := token2.(*token.Token)
 		permReq.Username = tokenset.Data.UserName
