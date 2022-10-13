@@ -2,12 +2,13 @@ package impl
 
 import (
 	"context"
+	"github.com/go-redis/redis"
+	"github.com/infraboard/mcube/logger"
+	"github.com/infraboard/mcube/logger/zap"
 	"github.com/zginkgo/ginkgo_keyauth/apps"
 	"github.com/zginkgo/ginkgo_keyauth/apps/token"
 	"github.com/zginkgo/ginkgo_keyauth/apps/user"
 	"github.com/zginkgo/ginkgo_keyauth/conf"
-	"github.com/infraboard/mcube/logger"
-	"github.com/infraboard/mcube/logger/zap"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/x/bsonx"
@@ -22,7 +23,8 @@ type impl struct {
 	col *mongo.Collection
 	log logger.Logger
 	token.UnimplementedServiceServer
-	user user.ServiceServer
+	user  user.ServiceServer
+	redis *redis.Client
 }
 
 func (s *impl) Config() error {
@@ -36,6 +38,7 @@ func (s *impl) Config() error {
 	s.col = db.Collection(s.Name())
 	s.log = zap.L().Named(s.Name())
 	s.user = apps.GetGrpcApp(user.AppName).(user.ServiceServer)
+	s.redis = conf.C().Redis.GetClient()
 
 	// 创建索引
 	indexs := []mongo.IndexModel{

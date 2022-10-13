@@ -2,10 +2,9 @@ package rpc
 
 import (
 	"context"
-	"fmt"
 	mcenter "github.com/infraboard/mcenter/client/rpc"
 	"github.com/stretchr/testify/assert"
-	"github.com/zginkgo/ginkgo_keyauth/apps/policy"
+	"github.com/zginkgo/ginkgo_keyauth/apps/audit"
 	"testing"
 )
 
@@ -43,7 +42,37 @@ import (
 //}
 
 // 测试鉴权
-func TestValidatePermission(t *testing.T) {
+//func TestValidatePermission(t *testing.T) {
+//	should := assert.New(t)
+//
+//	conf := mcenter.NewDefaultConfig()
+//	conf.Address = "127.0.0.1:18010"
+//	conf.ClientID = "t53ZcSeBXvQfItjDhTb1HTgx"
+//	conf.ClientSecret = "DkU6JwaJeOFhPusctwCe7yzAl6b3SCFM"
+//
+//	// 传递Mcenter配置, 客户端通过Mcenter进行搜索, New一个用户中心的客户端
+//
+//	keyauthClient, err := NewClient(conf)
+//	if should.NoError(err) {
+//		req := policy.NewValidatePermissionRequest()
+//		req.Username = "member3"
+//		req.Service = "cmdb"
+//		req.Resource = "secret"
+//		req.Namespace = "default"
+//		req.Action = "delete12345"
+//		//names := []string{"cmdb", "keyauth", "member"}
+//		//p, err := keyauthClient.Role().QueryRole(context.TODO(), role.NewQueryRoleRequestWithName(names))
+//		//p, err := keyauthClient.Policy().QueryPolicy(context.TODO(), policy.NewQueryPolicyRequest())
+//		p, err := keyauthClient.Policy().ValidatePermission(context.TODO(), req)
+//		if err != nil {
+//			t.Fatal(err)
+//		}
+//		fmt.Println(p, err)
+//		t.Log(p)
+//	}
+//}
+
+func TestAuditOperate(t *testing.T) {
 	should := assert.New(t)
 
 	conf := mcenter.NewDefaultConfig()
@@ -54,21 +83,14 @@ func TestValidatePermission(t *testing.T) {
 	// 传递Mcenter配置, 客户端通过Mcenter进行搜索, New一个用户中心的客户端
 
 	keyauthClient, err := NewClient(conf)
+
 	if should.NoError(err) {
-		req := policy.NewValidatePermissionRequest()
-		req.Username = "member3"
-		req.Service = "cmdb"
-		req.Resource = "secret"
-		req.Namespace = "default"
-		req.Action = "delete12345"
-		//names := []string{"cmdb", "keyauth", "member"}
-		//p, err := keyauthClient.Role().QueryRole(context.TODO(), role.NewQueryRoleRequestWithName(names))
-		//p, err := keyauthClient.Policy().QueryPolicy(context.TODO(), policy.NewQueryPolicyRequest())
-		p, err := keyauthClient.Policy().ValidatePermission(context.TODO(), req)
+		req := audit.NewOperateLog("member", "secret", "delete")
+		p, err := keyauthClient.Audit().AuditOperate(context.TODO(), req)
 		if err != nil {
 			t.Fatal(err)
 		}
-		fmt.Println(p, err)
+
 		t.Log(p)
 	}
 }

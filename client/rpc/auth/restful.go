@@ -4,10 +4,13 @@ import (
 	"github.com/emicklei/go-restful/v3"
 	"github.com/infraboard/mcube/exception"
 	"github.com/infraboard/mcube/http/label"
+	"github.com/infraboard/mcube/http/request"
 	"github.com/infraboard/mcube/http/response"
+	"github.com/zginkgo/ginkgo_keyauth/apps/audit"
 	"github.com/zginkgo/ginkgo_keyauth/apps/policy"
 	"github.com/zginkgo/ginkgo_keyauth/apps/token"
 	"github.com/zginkgo/ginkgo_keyauth/common/utils"
+	"time"
 )
 
 // RestfulAuthHandlerFunc Go-Restful auth Middleware
@@ -76,9 +79,12 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 	if isAuthEnable && isPermEnable {
 		permReq := policy.NewValidatePermissionRequest()
 
-		token2 := req.Attribute("token")
-		tokenset, _ := token2.(*token.Token)
-		permReq.Username = tokenset.Data.UserName
+		//token2 := req.Attribute("token")
+		//tokenset, _ := token2.(*token.Token)
+		//permReq.Username = tokenset.Data.UserName
+
+		tk := req.Attribute("token").(*token.Token)
+		permReq.Username = tk.Data.UserName
 
 		permReq.Service = a.serviceName
 		if meta != nil {
@@ -97,6 +103,49 @@ func (a *KeyauthAuther) RestfulAuthHandlerFunc(
 		}
 	}
 
+	// 获取meta信息, get, 判断是否开启鉴权
+	var isAuditEnable bool
+	if authV, ok := meta[label.Audit]; ok {
+		switch v := authV.(type) {
+		case bool:
+			isAuditEnable = v
+		case string:
+			isAuditEnable = v == "true"
+		}
+	}
+
+	start := time.Now()
+
 	// chain 用于将请求flow下去
 	chain.ProcessFilter(req, resp)
+
+	cost := time.Now().Sub(start).Milliseconds()
+
+	// 如果有记录Respone需求的话，需要在Process才有进行的
+	// 认证后，才能审计
+	if isAuthEnable && isAuditEnable {
+		tk := req.Attribute("token").(*token.Token)
+		auditReq := audit.NewOperateLog(tk.Data.UserName, "", "")
+		auditReq.Service = a.serviceName
+		auditReq.Url = req.Request.URL.String()
+		auditReq.Cost = cost
+		auditReq.StatusCode = int64(resp.StatusCode())
+		auditReq.UserAgent = req.Request.UserAgent()
+		// X-Forwar-For
+		auditReq.RemoteIp = request.GetRemoteIP(req.Request)
+
+		if meta != nil {
+			if v, ok := meta[label.Resource]; ok {
+				auditReq.Resource, _ = v.(string)
+			}
+			if v, ok := meta[label.Action]; ok {
+				auditReq.Action, _ = v.(string)
+			}
+		}
+		_, err := a.audit.AuditOperate(req.Request.Context(), auditReq)
+		if err != nil {
+			a.log.Warnf("audit operate failed, %s", err)
+			return
+		}
+	}
 }

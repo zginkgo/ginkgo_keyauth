@@ -7,6 +7,7 @@ import (
 	"github.com/infraboard/mcenter/client/rpc/resolver"
 	"github.com/infraboard/mcube/logger"
 	"github.com/infraboard/mcube/logger/zap"
+	"github.com/zginkgo/ginkgo_keyauth/apps/audit"
 	"github.com/zginkgo/ginkgo_keyauth/apps/endpoint"
 	"github.com/zginkgo/ginkgo_keyauth/apps/policy"
 	"github.com/zginkgo/ginkgo_keyauth/apps/role"
@@ -83,4 +84,9 @@ func (c *ClientSet) Role() role.RPCClient {
 // Policy 服务的SDK
 func (c *ClientSet) Policy() policy.RPCClient {
 	return policy.NewRPCClient(c.conn)
+}
+
+// Audit 服务的 SDK
+func (c *ClientSet) Audit() audit.RPCClient {
+	return audit.NewRPCClient(c.conn)
 }

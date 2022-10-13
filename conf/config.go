@@ -3,6 +3,7 @@ package conf
 import (
 	"context"
 	"fmt"
+	"github.com/go-redis/redis"
 	"github.com/infraboard/mcenter/client/rpc"
 	"sync"
 
@@ -12,7 +13,8 @@ import (
 )
 
 var (
-	mgoclient *mongo.Client
+	mgoclient   *mongo.Client
+	redisClient *redis.Client
 )
 
 func newConfig() *Config {
@@ -22,6 +24,7 @@ func newConfig() *Config {
 
 		Mongo:   newDefaultMongoDB(),
 		Mcenter: rpc.NewDefaultConfig(),
+		Redis:   NewDefualtRedis(),
 	}
 }
 
@@ -39,6 +42,9 @@ type Config struct {
 	// rpc.C().Instance()
 	// 后面实现实例注册, 就执行使用 rpc.C() 这个全局变量
 	Mcenter *rpc.Config `toml:"mcenter"`
+
+	// 用于缓存
+	Redis *Redis `toml:"redis"`
 }
 
 func (c *Config) InitGlobal() error {
@@ -199,4 +205,34 @@ func (m *mongodb) getClient() (*mongo.Client, error) {
 	}
 
 	return client, nil
+}
+
+func NewDefualtRedis() *Redis {
+	return &Redis{
+		Address: "localhost:6379",
+		DB:      0,
+	}
+}
+
+type Redis struct {
+	Address  string `toml:"address" env:"REDIS_ADDRESS"`
+	Password string `toml:"password" env:"REDIS_PASSWORD"`
+	DB       int    `toml:"db" env:"REDIS_DB"`
+
+	l sync.Mutex
+}
+
+func (r *Redis) GetClient() *redis.Client {
+	r.l.Lock()
+	defer r.l.Unlock()
+
+	if redisClient == nil {
+		redisClient = redis.NewClient(&redis.Options{
+			Addr:     r.Address,
+			Password: r.Password, // no password set
+			DB:       r.DB,       // use default DB
+		})
+	}
+
+	return redisClient
 }

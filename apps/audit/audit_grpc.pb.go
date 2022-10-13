@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.19.1
-// source: apps/endpoint/pb/endpoint.proto
+// source: apps/audit/pb/audit.proto
 
-package endpoint
+package audit
 
 import (
 	context "context"
@@ -22,8 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RPCClient interface {
-	// 服务功能注册
-	RegistryEndpoint(ctx context.Context, in *EndpiontSet, opts ...grpc.CallOption) (*RegistryResponse, error)
+	AuditOperate(ctx context.Context, in *OperateLog, opts ...grpc.CallOption) (*AuditOperateLogResponse, error)
 }
 
 type rPCClient struct {
@@ -34,9 +33,9 @@ func NewRPCClient(cc grpc.ClientConnInterface) RPCClient {
 	return &rPCClient{cc}
 }
 
-func (c *rPCClient) RegistryEndpoint(ctx context.Context, in *EndpiontSet, opts ...grpc.CallOption) (*RegistryResponse, error) {
-	out := new(RegistryResponse)
-	err := c.cc.Invoke(ctx, "/ginkgo_keyauth.endpoint.RPC/RegistryEndpoint", in, out, opts...)
+func (c *rPCClient) AuditOperate(ctx context.Context, in *OperateLog, opts ...grpc.CallOption) (*AuditOperateLogResponse, error) {
+	out := new(AuditOperateLogResponse)
+	err := c.cc.Invoke(ctx, "/zginkgo.ginkgo_keyauth.audit.RPC/AuditOperate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,8 +46,7 @@ func (c *rPCClient) RegistryEndpoint(ctx context.Context, in *EndpiontSet, opts 
 // All implementations must embed UnimplementedRPCServer
 // for forward compatibility
 type RPCServer interface {
-	// 服务功能注册
-	RegistryEndpoint(context.Context, *EndpiontSet) (*RegistryResponse, error)
+	AuditOperate(context.Context, *OperateLog) (*AuditOperateLogResponse, error)
 	mustEmbedUnimplementedRPCServer()
 }
 
@@ -56,8 +54,8 @@ type RPCServer interface {
 type UnimplementedRPCServer struct {
 }
 
-func (UnimplementedRPCServer) RegistryEndpoint(context.Context, *EndpiontSet) (*RegistryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegistryEndpoint not implemented")
+func (UnimplementedRPCServer) AuditOperate(context.Context, *OperateLog) (*AuditOperateLogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuditOperate not implemented")
 }
 func (UnimplementedRPCServer) mustEmbedUnimplementedRPCServer() {}
 
@@ -72,20 +70,20 @@ func RegisterRPCServer(s grpc.ServiceRegistrar, srv RPCServer) {
 	s.RegisterService(&RPC_ServiceDesc, srv)
 }
 
-func _RPC_RegistryEndpoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EndpiontSet)
+func _RPC_AuditOperate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OperateLog)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RPCServer).RegistryEndpoint(ctx, in)
+		return srv.(RPCServer).AuditOperate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ginkgo_keyauth.endpoint.RPC/RegistryEndpoint",
+		FullMethod: "/zginkgo.ginkgo_keyauth.audit.RPC/AuditOperate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RPCServer).RegistryEndpoint(ctx, req.(*EndpiontSet))
+		return srv.(RPCServer).AuditOperate(ctx, req.(*OperateLog))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -94,14 +92,14 @@ func _RPC_RegistryEndpoint_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RPC_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ginkgo_keyauth.endpoint.RPC",
+	ServiceName: "zginkgo.ginkgo_keyauth.audit.RPC",
 	HandlerType: (*RPCServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "RegistryEndpoint",
-			Handler:    _RPC_RegistryEndpoint_Handler,
+			MethodName: "AuditOperate",
+			Handler:    _RPC_AuditOperate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "apps/endpoint/pb/endpoint.proto",
+	Metadata: "apps/audit/pb/audit.proto",
 }
