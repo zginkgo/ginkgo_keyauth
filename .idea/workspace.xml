@@ -5,16 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cac283f7-8820-4774-a075-2ef5bcbff455" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/all/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/all/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/all/impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/all/impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/grpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rpc/auth/auther.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/auth/auther.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rpc/auth/restful.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/auth/restful.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rpc/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/rpc/client_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/client/rpc/client_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/book/book.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/book/book_grpc.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/book/pb/book.proto" beforeDir="false" afterPath="$PROJECT_DIR$/apps/book/pb/book.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/endpoint/endpoint.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/endpoint/endpoint_grpc.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/endpoint/pb/endpoint.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/policy/policy.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/policy/policy.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/token/token.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/token/token.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/token/token_enum.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/token/token_enum.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/user.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/user.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/user_enum.go" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/user_enum.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/root.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/root.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/start.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,19 +63,34 @@
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.vendoring.notification.had.been.shown": "true",
     "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/y/Go_Env/src/github.com/zginkgo/ginkgo_keyauth",
+    "last_opened_file_path": "/Users/y/Go_Env/src/github.com/zginkgo/ginkgo_keyauth/apps/endpoint/pb",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Protocol Buffer"
+    "settings.editor.selected.configurable": "google.protobuf.language"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/endpoint/pb" />
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/docs/include" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/include/github.com" />
+      <recent name="$PROJECT_DIR$/docs/include/github.com/zginkgo/ginkgo_mcube" />
+      <recent name="$PROJECT_DIR$/apps/endpoint/pb" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/docs/include/ginkgo_keyauth" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />

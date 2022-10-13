@@ -18,7 +18,7 @@ var vers bool
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
-	Use:   "ginkgo_keyauth",
+	Use:   "ginkgo_mcube",
 	Short: "用户中心",
 	Long:  "用户中心",
 	RunE: func(cmd *cobra.Command, args []string) error {

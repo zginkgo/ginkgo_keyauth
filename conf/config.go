@@ -128,7 +128,7 @@ func newDefaultLog() *log {
 
 func newDefaultMongoDB() *mongodb {
 	return &mongodb{
-		Database:  "ginkgo_keyauth",
+		Database:  "ginkgo_mcube",
 		Endpoints: []string{"1.1.1.1:27017"},
 	}
 }

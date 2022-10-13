@@ -120,19 +120,19 @@ type User struct {
 
 	// 唯一ID
 	// @gotags: json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// 录入时间
 	// @gotags: json:"create_at" bson:"create_at"
-	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at" bson:"create_at"`
+	CreateAt int64 `protobuf:"varint,2,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty"`
 	// 更新时间
 	// @gotags: json:"update_at" bson:"update_at"
-	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at" bson:"update_at"`
+	UpdateAt int64 `protobuf:"varint,3,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
 	// 更新人
 	// @gotags: json:"update_by" bson:"update_by"
-	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by" bson:"update_by"`
+	UpdateBy string `protobuf:"bytes,4,opt,name=update_by,json=updateBy,proto3" json:"update_by,omitempty"`
 	// 书本信息
 	// @gotags: json:"data" bson:"data"
-	Data *CreateUserRequest `protobuf:"bytes,5,opt,name=data,proto3" json:"data" bson:"data"`
+	Data *CreateUserRequest `protobuf:"bytes,5,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *User) Reset() {
@@ -209,16 +209,16 @@ type CreateUserRequest struct {
 
 	// 创建人
 	// @gotags: json:"create_by" bson:"create_by"
-	CreateBy string `protobuf:"bytes,1,opt,name=create_by,json=createBy,proto3" json:"create_by" bson:"create_by"`
+	CreateBy string `protobuf:"bytes,1,opt,name=create_by,json=createBy,proto3" json:"create_by,omitempty"`
 	// 用户名称
 	// @gotags: json:"name" bson:"name" validate:"required"
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// 用户的密码
 	// @gotags: json:"password" bson:"password" validate:"required"
-	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password" bson:"password" validate:"required"`
+	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 	// 用户属于那个组织或者公司
 	// @gotags: json:"domain" bson:"domain"
-	Domain string `protobuf:"bytes,4,opt,name=domain,proto3" json:"domain" bson:"domain"`
+	Domain string `protobuf:"bytes,4,opt,name=domain,proto3" json:"domain,omitempty"`
 }
 
 func (x *CreateUserRequest) Reset() {
@@ -288,10 +288,10 @@ type QueryUserRequest struct {
 
 	// 分页参数
 	// @gotags: json:"page"
-	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page"`
+	Page *PageRequest `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
 	// 关键字参数
 	// @gotags: json:"keywords"
-	Keywords string `protobuf:"bytes,2,opt,name=keywords,proto3" json:"keywords"`
+	Keywords string `protobuf:"bytes,2,opt,name=keywords,proto3" json:"keywords,omitempty"`
 }
 
 func (x *QueryUserRequest) Reset() {
@@ -411,10 +411,10 @@ type UserSet struct {
 
 	// 分页时，返回总数量
 	// @gotags: json:"total"
-	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total"`
+	Total int64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
 	// 一页的数据
 	// @gotags: json:"items"
-	Items []*User `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
+	Items []*User `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
 }
 
 func (x *UserSet) Reset() {
@@ -472,16 +472,16 @@ type DescribeUserRequest struct {
 
 	// describe_by
 	// @gotags: json:"describe_by"
-	DescribeBy DescribeBy `protobuf:"varint,1,opt,name=describe_by,json=describeBy,proto3,enum=ginkgo_keyauth.user.DescribeBy" json:"describe_by"`
+	DescribeBy DescribeBy `protobuf:"varint,1,opt,name=describe_by,json=describeBy,proto3,enum=ginkgo_keyauth.user.DescribeBy" json:"describe_by,omitempty"`
 	// user_id
 	// @gotags: json:"user_id"
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id"`
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	// domain
 	// @gotags: json:"domain"
-	Domain string `protobuf:"bytes,3,opt,name=domain,proto3" json:"domain"`
+	Domain string `protobuf:"bytes,3,opt,name=domain,proto3" json:"domain,omitempty"`
 	// user_name
 	// @gotags: json:"user_name"
-	UserName string `protobuf:"bytes,4,opt,name=user_name,json=userName,proto3" json:"user_name"`
+	UserName string `protobuf:"bytes,4,opt,name=user_name,json=userName,proto3" json:"user_name,omitempty"`
 }
 
 func (x *DescribeUserRequest) Reset() {
@@ -551,19 +551,19 @@ type UpdateUserRequest struct {
 
 	// book id
 	// @gotags: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// 更新模式
 	// @gotags: json:"update_mode"
-	UpdateMode UpdateMode `protobuf:"varint,2,opt,name=update_mode,json=updateMode,proto3,enum=ginkgo_keyauth.user.UpdateMode" json:"update_mode"`
+	UpdateMode UpdateMode `protobuf:"varint,2,opt,name=update_mode,json=updateMode,proto3,enum=ginkgo_keyauth.user.UpdateMode" json:"update_mode,omitempty"`
 	// 更新人
 	// @gotags: json:"update_by"
-	UpdateBy string `protobuf:"bytes,3,opt,name=update_by,json=updateBy,proto3" json:"update_by"`
+	UpdateBy string `protobuf:"bytes,3,opt,name=update_by,json=updateBy,proto3" json:"update_by,omitempty"`
 	// 更新时间
 	// @gotags: json:"update_at"
-	UpdateAt int64 `protobuf:"varint,4,opt,name=update_at,json=updateAt,proto3" json:"update_at"`
+	UpdateAt int64 `protobuf:"varint,4,opt,name=update_at,json=updateAt,proto3" json:"update_at,omitempty"`
 	// 更新的书本信息
 	// @gotags: json:"data"
-	Data *CreateUserRequest `protobuf:"bytes,5,opt,name=data,proto3" json:"data"`
+	Data *CreateUserRequest `protobuf:"bytes,5,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *UpdateUserRequest) Reset() {
@@ -640,7 +640,7 @@ type DeleteUserRequest struct {
 
 	// book id
 	// @gotags: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *DeleteUserRequest) Reset() {

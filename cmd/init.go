@@ -11,8 +11,8 @@ var (
 // initCmd represents the start command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "ginkgo_keyauth 服务初始化",
-	Long:  "ginkgo_keyauth 服务初始化",
+	Short: "ginkgo_mcube 服务初始化",
+	Long:  "ginkgo_mcube 服务初始化",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// 初始化全局变量
 		if err := loadGlobalConfig(confType); err != nil {

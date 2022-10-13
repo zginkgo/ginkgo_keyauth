@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ginkgo_keyauth.book;
+package zginkgo.ginkgo_keyauth.book;
 option go_package = "github.com/zginkgo/ginkgo_keyauth/apps/book";
 
 service Service {

@@ -39,7 +39,7 @@ func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
 
 func (c *serviceClient) CreateBook(ctx context.Context, in *CreateBookRequest, opts ...grpc.CallOption) (*Book, error) {
 	out := new(Book)
-	err := c.cc.Invoke(ctx, "/ginkgo_keyauth.book.Service/CreateBook", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/zginkgo.ginkgo_keyauth.book.Service/CreateBook", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func (c *serviceClient) CreateBook(ctx context.Context, in *CreateBookRequest, o
 
 func (c *serviceClient) QueryBook(ctx context.Context, in *QueryBookRequest, opts ...grpc.CallOption) (*BookSet, error) {
 	out := new(BookSet)
-	err := c.cc.Invoke(ctx, "/ginkgo_keyauth.book.Service/QueryBook", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/zginkgo.ginkgo_keyauth.book.Service/QueryBook", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +57,7 @@ func (c *serviceClient) QueryBook(ctx context.Context, in *QueryBookRequest, opt
 
 func (c *serviceClient) DescribeBook(ctx context.Context, in *DescribeBookRequest, opts ...grpc.CallOption) (*Book, error) {
 	out := new(Book)
-	err := c.cc.Invoke(ctx, "/ginkgo_keyauth.book.Service/DescribeBook", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/zginkgo.ginkgo_keyauth.book.Service/DescribeBook", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ func (c *serviceClient) DescribeBook(ctx context.Context, in *DescribeBookReques
 
 func (c *serviceClient) UpdateBook(ctx context.Context, in *UpdateBookRequest, opts ...grpc.CallOption) (*Book, error) {
 	out := new(Book)
-	err := c.cc.Invoke(ctx, "/ginkgo_keyauth.book.Service/UpdateBook", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/zginkgo.ginkgo_keyauth.book.Service/UpdateBook", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,7 +75,7 @@ func (c *serviceClient) UpdateBook(ctx context.Context, in *UpdateBookRequest, o
 
 func (c *serviceClient) DeleteBook(ctx context.Context, in *DeleteBookRequest, opts ...grpc.CallOption) (*Book, error) {
 	out := new(Book)
-	err := c.cc.Invoke(ctx, "/ginkgo_keyauth.book.Service/DeleteBook", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/zginkgo.ginkgo_keyauth.book.Service/DeleteBook", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func _Service_CreateBook_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ginkgo_keyauth.book.Service/CreateBook",
+		FullMethod: "/zginkgo.ginkgo_keyauth.book.Service/CreateBook",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceServer).CreateBook(ctx, req.(*CreateBookRequest))
@@ -154,7 +154,7 @@ func _Service_QueryBook_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ginkgo_keyauth.book.Service/QueryBook",
+		FullMethod: "/zginkgo.ginkgo_keyauth.book.Service/QueryBook",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceServer).QueryBook(ctx, req.(*QueryBookRequest))
@@ -172,7 +172,7 @@ func _Service_DescribeBook_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ginkgo_keyauth.book.Service/DescribeBook",
+		FullMethod: "/zginkgo.ginkgo_keyauth.book.Service/DescribeBook",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceServer).DescribeBook(ctx, req.(*DescribeBookRequest))
@@ -190,7 +190,7 @@ func _Service_UpdateBook_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ginkgo_keyauth.book.Service/UpdateBook",
+		FullMethod: "/zginkgo.ginkgo_keyauth.book.Service/UpdateBook",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceServer).UpdateBook(ctx, req.(*UpdateBookRequest))
@@ -208,7 +208,7 @@ func _Service_DeleteBook_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ginkgo_keyauth.book.Service/DeleteBook",
+		FullMethod: "/zginkgo.ginkgo_keyauth.book.Service/DeleteBook",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceServer).DeleteBook(ctx, req.(*DeleteBookRequest))
@@ -220,7 +220,7 @@ func _Service_DeleteBook_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ginkgo_keyauth.book.Service",
+	ServiceName: "zginkgo.ginkgo_keyauth.book.Service",
 	HandlerType: (*ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

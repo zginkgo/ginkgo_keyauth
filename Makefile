@@ -7,7 +7,7 @@ MOD_DIR := $(shell go env GOPATH)/pkg/mod
 PKG_LIST := $(shell go list ${PKG}/... | grep -v /vendor/ | grep -v redis)
 GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/ | grep -v _test.go)
 
-#MCUBE_MODULE := "github.com/infraboard/mcube"
+#MCUBE_MODULE := "github.com/infraboard/ginkgo_mcube"
 #MCUBE_VERSION :=$(shell go list -m ${MCUBE_MODULE} | cut -d' ' -f2)
 #MCUBE_PKG_PATH := ${MOD_DIR}/${MCUBE_MODULE}@${MCUBE_VERSION}
 
@@ -59,18 +59,17 @@ install: ## Install depence go package
 	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	@go install github.com/favadi/protoc-go-inject-tag@latest
 
-pb: ## Copy mcube protobuf files to common/pb
+pb: ## Copy ginkgo_mcube protobuf files to common/pb
 	@mkdir -pv common/pb/github.com/infraboard/mcube/pb
 	@cp -r ${MCUBE_PKG_PATH}/pb/* common/pb/github.com/infraboard/mcube/pb
 	@rm -rf common/pb/github.com/infraboard/mcube/pb/*/*.go
 
 gen: #d generate code
-	@protoc -I=. --go_out=. --go-grpc_out=. --go_opt=module="${PKG}" --go-grpc_opt=module="${PKG}"  apps/*/pb/*
-	@protoc-go-inject-tag -input="apps/book/*.pb.go"
-	@protoc-go-inject-tag -input="apps/user/*.pb.go"
-	@protoc-go-inject-tag -input="apps/token/*.pb.go"
+	@protoc -I=. -I=/usr/local/include --go_out=. --go_opt=module=${PKG} --go-grpc_out=. --go-grpc_opt=module=${PKG} apps/*/pb/*.proto
 	@protoc-go-inject-tag -input="apps/endpoint/*.pb.go"
-	@protoc-go-inject-tag -input="apps/policy/*.pb.go"
+#	@protoc-go-inject-tag -input="apps/token/*.pb.go"
+#	@protoc-go-inject-tag -input="apps/endpoint/*.pb.go"
+#	@protoc-go-inject-tag -input="apps/policy/*.pb.go"
 
 help: ## Display this help screen
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

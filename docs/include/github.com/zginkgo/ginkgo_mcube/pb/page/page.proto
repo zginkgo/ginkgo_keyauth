@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package zginkgo.ginkgo_mcube.page;
+
+option go_package = "github.com/zginkgo/ginkgo_mcube/pb/page";
+
+message PageRequest {
+    uint64 page_size = 1;
+    uint64 page_number = 2;
+    int64 offset = 3;
+}
